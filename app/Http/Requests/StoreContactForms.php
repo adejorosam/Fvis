@@ -26,13 +26,13 @@ class StoreContactForms extends FormRequest
     {
         return [
             //
-            'name' => 'required',
-            'phoneNumber' => 'required',
+            'name' => "required|string",
+            'phoneNumber' => "required",
             'email' => 'required|email',
-            'address' => 'required',
-            'typeOfBusiness' => 'required',
-            'noOfEmployee' => 'required',
-            'products' => 'required'
+            'address' => "required|string",
+            'typeOfBusiness' => "required|string",
+            'noOfEmployee' => "required",
+            'products' => "required|string"
         ];
     }
 }

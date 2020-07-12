@@ -65,4 +65,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('projectfinance', 'Api\ServiceFormController@storeProjectFinanceForm');
     Route::post('realestate', 'Api\ServiceFormController@storeRealEstateForm');
     Route::post('financerequest', 'Api\ServiceFormController@storeFinanceRequest');
+    Route::post('volunteerapplication', 'Api\ServiceFormController@storeVolunteerApplicationForm');
+    Route::post('charity', 'Api\ServiceFormController@storeCharityRequest');
 });

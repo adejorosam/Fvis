@@ -25,8 +25,8 @@ class StoreFinanceRequestForm extends FormRequest
     {
         return [
             //
-            'firstName' => 'required',
-            'lastName' => 'required',
+            'firstName' => "required|string",
+            'lastName' => "required|string",
             'email' => 'required|email',
             'phoneNumber' => 'required',
             "companyAddress" => 'string',
@@ -37,19 +37,19 @@ class StoreFinanceRequestForm extends FormRequest
             "businessType" => "string",
             "companyWebsite" => "url",
             "companyName" => 'string',
-            'projectCountry' => 'required',
-            'projectDescription' => 'required',
-            'projectedCost' => 'required',
-            'totalAmountSpent' => 'required',
-            'totalAmountRequested' => 'required',
-            'sourceOfRequiredEntity' => 'required',
-            'isLandOwner' => 'required',
-            'isNeedDevelopmentPartner' => 'required',
+            'projectCountry' => "required|string",
+            'projectDescription' => "required|string",
+            'projectedCost' => "required",
+            'totalAmountSpent' => "required",
+            'totalAmountRequested' => "required",
+            'sourceOfRequiredEntity' => "required|string",
+            'isLandOwner' => "required",
+            'isNeedDevelopmentPartner' => "required",
             'isApprovalsComplete' => 'required',
             'isHaveDevelopmentPartner' => 'required',
             'isEngineeringComplete' => 'required',
             'isConstructionBegun' => 'required',
-            'signature' => 'required'
+            'signature' => "required|string"
 
         ];
     }

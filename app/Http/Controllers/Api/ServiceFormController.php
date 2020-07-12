@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRequestForms;
+use App\Http\Requests\StoreCharityContactForm;
+use App\Http\Requests\StoreVolunteerApplicationForm;
 use App\Http\Requests\StoreContactForms;
 use App\Http\Requests\StoreFinanceRequestForm;
 use App\Http\Requests\StoreFixedInvestmentRequest;
@@ -16,6 +18,8 @@ use App\ProjectFinanceContact;
 use App\TalentDevContact;
 use App\RealEstateContact;
 use App\ProjectFinanceRequest;
+use App\CharityContact;
+use App\VolunteerApplication;
 
 class ServiceFormController extends Controller
 {
@@ -206,5 +210,49 @@ class ServiceFormController extends Controller
             ];
             return response()->json($response, 401);
         }
-    }   
+    }
+
+    public function storeCharityRequest(StoreCharityContactForm $request){
+        
+        $validated = $request->validated();
+        $storedForm = CharityContact::create($validated);
+        if($storedForm){
+            $response = [
+                "success" => true,
+                "message" => "Form was saved successfully",
+                "data" => $storedForm
+            ];
+            return response()->json($response, 201);
+        }
+        else{
+            $response = [
+                "success" => false,
+                "message" => "Error",
+                "data" => null
+            ];
+            return response()->json($response, 401);
+        }
+    }
+    
+    public function storeVolunteerApplicationForm(StoreVolunteerApplicationForm $request){
+        
+        $validated = $request->validated();
+        $storedForm = VolunteerApplication::create($validated);
+        if($storedForm){
+            $response = [
+                "success" => true,
+                "message" => "Form was saved successfully",
+                "data" => $storedForm
+            ];
+            return response()->json($response, 201);
+        }
+        else{
+            $response = [
+                "success" => false,
+                "message" => "Error",
+                "data" => null
+            ];
+            return response()->json($response, 401);
+        }
+    }  
 }

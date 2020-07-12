@@ -25,14 +25,14 @@ class StoreRequestForms extends FormRequest
     {
         return [
             //
-            'name' => 'required',
+            'name' => "required|string",
             'phoneNumber' => 'required',
             'email' => 'required|email',
-            'address' => 'required',
-            'typeOfBusiness' => 'required',
-            'noOfEmployee' => 'required',
-            'products' => 'required',
-            'areaOfInterest' => 'required'
+            'address' => "required|string",
+            'typeOfBusiness' => "required|string",
+            'noOfEmployee' => "required|string",
+            'products' => "required|string",
+            'areaOfInterest' => "required|string"
         ];
     }
 }

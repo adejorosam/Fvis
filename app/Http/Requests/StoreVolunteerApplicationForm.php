@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFixedInvestmentRequest extends FormRequest
+class StoreVolunteerApplicationForm extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,10 @@ class StoreFixedInvestmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'firstName' => "required|string",
-            'lastName' => "required|string",
-            'email' => 'required|email',
-            'title' => "required|string",
-            'phoneNumber' => 'required',
-            'investmentVolume' => "required"
+            "name" => "required",
+            "phoneNumber" => "required",
+            "email" => "required|email",
+            "address"=>"required"
         ];
     }
 }
