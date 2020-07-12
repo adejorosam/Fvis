@@ -55,3 +55,14 @@ Route::get('gallery/{slug}', 'Api\PostController@getsinglegallery');
 Route::get('admin/listcat', 'Api\PostController@listcategories');
 Route::get('getgalleries', 'Api\PostController@getgalleries');
 Route::get('cron', 'Api\UsersController@cron');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::post('talentdev', 'Api\ServiceFormController@storeTalentDevForm');
+    Route::post('commoditytrading', 'Api\ServiceFormController@storeCommodityTradingForm');
+    Route::post('corporatefinance', 'Api\ServiceFormController@storeCorporateFinanceForm');
+    Route::post('oilandgas', 'Api\ServiceFormController@storeOilAndGasForm');
+    Route::post('fixedinvestment', 'Api\ServiceFormController@storeFixedInvestmentForm');
+    Route::post('projectfinance', 'Api\ServiceFormController@storeProjectFinanceForm');
+    Route::post('realestate', 'Api\ServiceFormController@storeRealEstateForm');
+    Route::post('financerequest', 'Api\ServiceFormController@storeFinanceRequest');
+});

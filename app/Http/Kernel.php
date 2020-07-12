@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'diamond' => \Tymon\JWTAuth\Http\Middleware\Diamondmiddleware::class,
         'platinum' => \Tymon\JWTAuth\Http\Middleware\Platinummiddleware::class,
         'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
+        'forceJson' => \App\Http\Middleware\ForceJson::class
     ];
 }
