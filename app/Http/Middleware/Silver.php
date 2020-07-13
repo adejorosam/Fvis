@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
 use Closure;
+use JWTAuth;
 
 class Silver
 {
@@ -16,12 +17,16 @@ class Silver
      */
     public function handle($request, Closure $next)
     {
+        $user = JWTAuth::parseToken()->authenticate();
         $this->auth =
-            auth()->user() ?
-                (auth()->user()->member_id === 3)
+            $user ?
+                ($user->member_id === 3)
                 : false;
 
         if($this->auth === true)
             return $next($request);
+        else{
+            abort(403);
+        }
     }
 }

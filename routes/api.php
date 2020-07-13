@@ -25,6 +25,9 @@ Route::group(['middleware' => 'jwt.verify'], function () {
     Route::post('user/fundstransfer', 'Api\UsersController@fundstransfer');
     Route::post('user/repayloan', 'Api\UsersController@repayloan');
     Route::post('user/topup', 'Api\UsersController@topup');
+    Route::post('user/subscription', 'Api\UsersController@subscription');
+    Route::post('user/apply', 'Api\JobsController@apply');
+   
 });
 
 Route::group(['middleware' => 'admin'], function () {
@@ -45,6 +48,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/profilepic', 'Api\admin\SomeController@updatepic');
     Route::post('admin/savegallery', 'Api\admin\SomeController@storegallery');
     Route::post('admin/makeadmin', 'Api\admin\SomeController@makeadmin');
+    Route::post('admin/jobs', 'Api\JobsController@store');
+    Route::post('admin/jobs/update', 'Api\JobsController@updateJob');
+    Route::get('admin/jobs/applications', 'Api\JobsController@listJobApplications');
+    Route::get('admin/jobs/{id}', 'Api\JobsController@getJobByID');
 });
 
 Route::get('tweets', 'Api\TwitterController@tweets');
@@ -67,4 +74,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('financerequest', 'Api\ServiceFormController@storeFinanceRequest');
     Route::post('volunteerapplication', 'Api\ServiceFormController@storeVolunteerApplicationForm');
     Route::post('charity', 'Api\ServiceFormController@storeCharityRequest');
+    Route::get('jobs', 'Api\JobsController@listjobs');
+    Route::get('jobs/{slug}', 'Api\JobsController@getSingleJob');   
 });

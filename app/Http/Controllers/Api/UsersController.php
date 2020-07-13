@@ -8,6 +8,7 @@ use App\Bank;
 use JWTAuth;
 use App\Loan;
 use App\User;
+use App\Member;
 use App\Mail\NewNotification;
 use Illuminate\Support\Facades\Mail;
 use Validator;
@@ -274,7 +275,127 @@ class UsersController extends Controller
                     ]);
             }
         }
-    
+
+        public function subscription(Request $request) {
+           
+            $ref = "https://api.paystack.co/transaction/verify/$request->id";
+            $response = Http::withToken('sk_test_d44373e3a61b1d4c5e03fac8b65e2f3ac1393a97')->get($ref);
+            $body = $response->json();
+            if($body['status'] === 'success') {
+                if($request->amount === 125000){
+                    $user = JWTAuth::parseToken()->authenticate();
+                    // Bronze Membership
+                    $user->member_id = 1; 
+                    if($user->update()){
+                        $response = [
+                            "success" => true,
+                            "message" => "Successfully subscribed",
+                            "data" => $user
+                        ];
+                        return response()->json($response, 201);
+                    }
+                    else{
+                        $response = [
+                            "success" => false,
+                            "message" => "An error occured",
+                            "data" => null
+                        ];
+                        return response()->json($response, 401);
+                    }
+                }
+                elseif($request->amount === 250000){
+                    $user = JWTAuth::parseToken()->authenticate();
+                    // Silver Membership
+                    $user->member_id = 2;
+                    if($user->update()){
+                        $response = [
+                            "success" => true,
+                            "message" => "Successfully subscribed",
+                            "data" => $user
+                        ];
+                        return response()->json($response, 201);
+                    }
+                    else{
+                        $response = [
+                            "success" => false,
+                            "message" => "An error occured",
+                            "data" => null
+                        ];
+                        return response()->json($response, 401);
+                    }
+                }
+                elseif($request->amount === 600000){
+                    $user = JWTAuth::parseToken()->authenticate();
+                    // Gold Membership
+                    $user->member_id = 3;
+                    if($user->update()){
+                        $response = [
+                            "success" => true,
+                            "message" => "Successfully subscribed",
+                            "data" => $user
+                        ];
+                        return response()->json($response, 201);
+                    }
+                    else{
+                        $response = [
+                            "success" => false,
+                            "message" => "An error occured",
+                            "data" => null
+                        ];
+                        return response()->json($response, 401);
+                    }
+                }
+                elseif($request->amount === 5000000){
+                    $user = JWTAuth::parseToken()->authenticate();
+                    // Diamond Membership
+                    $user->member_id = 4;
+                    if($user->update()){
+                        $response = [
+                            "success" => true,
+                            "message" => "Successfully subscribed",
+                            "data" => $user
+                        ];
+                        return response()->json($response, 201);
+                    }
+                    else{
+                        $response = [
+                            "success" => false,
+                            "message" => "An error occured",
+                            "data" => null
+                        ];
+                        return response()->json($response, 401);
+                    }
+                }
+                elseif($request->amount === 20000000){
+                    $user = JWTAuth::parseToken()->authenticate();
+                    if($member->save()){
+                        // Platinum Membership
+                        $user->member_id = 5;                       
+                        $user->update();
+                        $response = [
+                            "success" => true,
+                            "message" => "Successfully subscribed",
+                            "data" => $user
+                        ];
+                        return response()->json($response, 201);
+                    }
+                    else{
+                        $response = [
+                            "success" => false,
+                            "message" => "An error occured",
+                            "data" => null
+                        ];
+                        return response()->json($response, 401);
+                    }
+                }   
+            }
+            else {
+                return response()->json([
+                        'success' => false,
+                        'msg' => 'Transaction not successful'
+            ], 500);
+             }
+        }
     
     
     public function webhook(Request $request) {

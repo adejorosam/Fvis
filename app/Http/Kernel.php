@@ -64,12 +64,12 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-        'admin' => \Tymon\JWTAuth\Http\Middleware\Adminmiddleware::class,
-        'bronze' => \Tymon\JWTAuth\Http\Middleware\Bronzemiddleware::class,
-        'silver' => \Tymon\JWTAuth\Http\Middleware\Silvermiddleware::class,
-        'gold' => \Tymon\JWTAuth\Http\Middleware\Goldmiddleware::class,
-        'diamond' => \Tymon\JWTAuth\Http\Middleware\Diamondmiddleware::class,
-        'platinum' => \Tymon\JWTAuth\Http\Middleware\Platinummiddleware::class,
+        'admin' => \App\Http\Middleware\Admin::class,
+        'bronze' => \App\Http\Middleware\Bronze::class,
+        'silver' => \App\Http\Middleware\Silver::class,
+        'gold' => \App\Http\Middleware\Gold::class,
+        'diamond' => \App\Http\Middleware\Diamond::class,
+        'platinum' => \App\Http\Middleware\Platinum::class,
         'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
         'forceJson' => \App\Http\Middleware\ForceJson::class
     ];
